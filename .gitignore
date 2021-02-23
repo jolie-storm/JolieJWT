@@ -1,7 +1,8 @@
 *.json
 .idea/*
-target/*
-.settings/*
+target
+.settings
+.idea
 .project
 *.iml
 .classpath

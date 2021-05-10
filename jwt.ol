@@ -67,11 +67,18 @@ interface JwtInterface{
      setVerifier (SetVerifierRequest)(SetVerifierResponse) throws CertificateException JOSEException FileNotFound
 }
 
-outputPort JWT {
-  Interfaces: JwtInterface
+
+
+service JWT {
+  
+inputPort ip {
+        location:"local"
+        interfaces: JwtInterface
+    }
+
+foreign java {
+  class: "joliex.jwt.JwtService" 
+  }
 }
 
-embedded {
-Java:
-	"org.joliex.JwtService" in JWT
-}
+

@@ -9,7 +9,7 @@ public class JwtServiceTest extends TestCase {
 
     public void testSetSigner() throws FaultException {
 
-        JwtService jwtService = new JwtService();
+  /*      JwtService jwtService = new JwtService();
         Value setSignerValue = Value.create();
         setSignerValue.getFirstChild("signed").getFirstChild("keystore").getFirstChild("filename").setValue("clientkeystore");
         setSignerValue.getFirstChild("signed").getFirstChild("keystore").getFirstChild("keystorePass").setValue("test01");
@@ -18,12 +18,12 @@ public class JwtServiceTest extends TestCase {
 
         setSignerValue = Value.create();
         setSignerValue.getFirstChild("signed").getFirstChild("jsonstore").getFirstChild("filename").setValue("jvproject-289212-ce3b03a915fd.json");
-        jwtService.setSigner(setSignerValue);
+        jwtService.setSigner(setSignerValue);*/
     }
 
     public void testCreateJWToken() throws FaultException {
 
-        JwtService jwtService = new JwtService();
+  /*      JwtService jwtService = new JwtService();
         Value setSignerValue = Value.create();
         setSignerValue.getFirstChild("signed").getFirstChild("keystore").getFirstChild("filename").setValue("clientkeystore");
         setSignerValue.getFirstChild("signed").getFirstChild("keystore").getFirstChild("keystorePass").setValue("test01");
@@ -47,11 +47,13 @@ public class JwtServiceTest extends TestCase {
         Value response = jwtService.createJWToken(requestCreateJWT);
         System.out.println(response.getFirstChild("jwt").strValue());
 
+   */
+
     }
 
     public void testReadJWToken() throws FaultException {
 
-        JwtService jwtService = new JwtService();
+    /*    JwtService jwtService = new JwtService();
         Value setSignerValue = Value.create();
         setSignerValue.getFirstChild("signed").getFirstChild("keystore").getFirstChild("filename").setValue("clientkeystore");
         setSignerValue.getFirstChild("signed").getFirstChild("keystore").getFirstChild("keystorePass").setValue("test01");
@@ -82,15 +84,15 @@ public class JwtServiceTest extends TestCase {
         Value readJwtValueRequest = Value.create();
         readJwtValueRequest.getFirstChild("jwt").setValue(responseCreateJWT.getFirstChild("jwt").strValue());
         Value responseReadJWT = jwtService.readJWToken(readJwtValueRequest);
-        System.out.println(responseReadJWT.getFirstChild("registeredClaims").getFirstChild("sub").strValue());
+        System.out.println(responseReadJWT.getFirstChild("registeredClaims").getFirstChild("sub").strValue());*/
     }
 
     public void testSetVerifier() throws FaultException {
 
-        JwtService jwtService = new JwtService();
+   /*     JwtService jwtService = new JwtService();
         Value setVerifierValue = Value.create();
         setVerifierValue.getFirstChild("signed").getFirstChild("certificate").setValue("publicKey.pem");
-        jwtService.setVerifier(setVerifierValue);
+        jwtService.setVerifier(setVerifierValue);*/
 
     }
 }

@@ -1,5 +1,5 @@
-from  "./packages/jwt" import JWT
-from  "./packages/jwt" import JwtInterface
+from  package.jwt import JWT
+from  package.jwt import JwtInterface
 
 service TestService{
     embed JWT  as JWT

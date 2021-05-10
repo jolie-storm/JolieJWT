@@ -5,22 +5,34 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.joliex</groupId>
     <artifactId>JwtService</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!-- todo change in gcr for google cloud-->
-        <docker.image.prefix>fbpixis01</docker.image.prefix>
-        <docker.image.registry.prefix>${docker.image.prefix}.azurecr.io</docker.image.registry.prefix>
-        <docker.image.name>${docker.image.registry.prefix}/${groupId}.${artifactId}</docker.image.name>
-        <docker.image.version>${project.version}</docker.image.version>
-        <docker.expose.port.http.rest>10011</docker.expose.port.http.rest>
-        <docker.publish.port.http.rest>80</docker.publish.port.http.rest>
-        <docker.expose.port.https.rest>11011</docker.expose.port.https.rest>
-        <docker.publish.port.https.rest>443</docker.publish.port.https.rest>
+
     </properties>
+    <profiles>
+        <profile>
+            <id>1.9.X</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <jolie.version>1.9.x</jolie.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>1.10.X</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jolie.version>1.10.X</jolie.version>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -81,7 +93,7 @@
                                     <version>1.0.2</version>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.basedir}/lib</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/jolie/${jolie.version}/lib</outputDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -100,7 +112,26 @@
                                     <destFileName>${project.artifactId}.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.basedir}/lib</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/jolie/${jolie.version}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-installed-npm</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>${project.packaging}</type>
+                                    <destFileName>${project.artifactId}.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.basedir}/dist</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
